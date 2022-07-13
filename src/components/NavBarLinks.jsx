@@ -1,12 +1,12 @@
-const NavBarLinks = ({text, link, dropdown, textOption}) => { 
+const NavBarLinks = ({text, link, dropdown, linkOption, textOption}) => { 
     if(dropdown){
         return(
         <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a className="nav-link dropdown-toggle" href={link} id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {text}
                     </a>
                     <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a className="dropdown-item" href="#">{textOption}</a></li>
+                        <li><a className="dropdown-item" href={linkOption}>{textOption}</a></li>
                     </ul>
         </li>)
     }else{

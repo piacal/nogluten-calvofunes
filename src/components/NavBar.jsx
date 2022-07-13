@@ -8,8 +8,8 @@ import NavBarLinks from './NavBarLinks';
 const NavBar = () => {
     const elementNavBar = [{link: '#', text: 'INICIO'}, {link: '#', text: 'COMO COMPRAR'}, {link: '#', text:'CONTACTO'}];
     const navBarElem = elementNavBar.map(({link, text}) => <NavBarLinks link={link} text={text}/>);
-    const optionProductos = ["Almacen", "Panificado", "Congelados"];
-    const productos = <NavBarLinks dropdown text="PRODUCTOS" textOption={optionProductos.join('\n')}/>;
+    const optionProductos = [{linkOption: "#", textOption:"Almacen"}, {linkOption: "#", textOption:"Panificado"}, {linkOption: "#", textOption:"Congelados"}];
+    const productos = optionProductos.map(({linkOption, textOption}) => <NavBarLinks dropdown text="PRODUCTOS" link="#" linkOption={linkOption} textOption={textOption}/>);
     return ( 
     <> 
     <nav className="navbar navbar-expand-lg bg-light">
