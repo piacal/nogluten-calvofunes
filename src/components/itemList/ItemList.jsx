@@ -8,7 +8,7 @@ const ItemList = (props) => {
         <div className="row">
           {props.items.map((item) => (
             <div key={item.id} className="col-sm">
-              <Item item={item} />
+              <Item key={item.id} item={item} />
             </div>
           ))}
         </div>
