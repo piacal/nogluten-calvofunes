@@ -1,4 +1,4 @@
-const NavBarLinks = ({
+/* const NavBarLink = ({
   text,
   link,
   dropdown,
@@ -38,4 +38,5 @@ const NavBarLinks = ({
   );
 };
 
-export default NavBarLinks;
+export default NavBarLink;
+ */

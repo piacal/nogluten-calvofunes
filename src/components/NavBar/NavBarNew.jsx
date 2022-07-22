@@ -24,17 +24,21 @@ const NavBarNew = () => {
         <div
           className="container-fluid collapse navbar-collapse"
           id="navbarNavDropdown"
-        ></div>
-        <li>
-          <CartWidgetCarrito />
-        </li>
-        <ul className="navbar-nav">
-          {categories.map((categories) => (
-            <Link to={categories.path} key={categories.id}>
-              {categories.name}
-            </Link>
-          ))}
-        </ul>
+        >
+          <ul className="navbar-nav">
+            {categories.map((categories) => (
+              <Link
+                className="nav-link active"
+                aria-current="page"
+                to={categories.path}
+                key={categories.id}
+              >
+                {categories.name}
+              </Link>
+            ))}
+            <CartWidgetCarrito />
+          </ul>
+        </div>
       </nav>
     </>
   );

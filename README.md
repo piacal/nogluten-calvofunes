@@ -1,3 +1,11 @@
+## No-gluten
+
+Es un e-commerce esta pensado como un shop de productos para celiacos, donde sea de facil busqueda para los usuarios.
+
+## Libreria
+
+Bootstrap
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

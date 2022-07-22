@@ -1,8 +1,8 @@
-import "bootstrap/dist/css/bootstrap.css";
+/* import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap";
 import CartWidgetIcono from "./CartWidgetIcono";
 import CartWidgetCarrito from "./CartWidgetCarrito";
-import NavBarLinks from "./NavBarLinks";
+import NavBarLink from "./NavBarLinks";
 
 const NavBar = () => {
   const elementNavBar = [
@@ -11,7 +11,7 @@ const NavBar = () => {
     { link: "#", text: "CONTACTO" },
   ];
   const navBarElem = elementNavBar.map(({ link, text }) => (
-    <NavBarLinks link={link} text={text} />
+    <NavBarLink link={link} text={text} />
   ));
 
   const optionProducts: OptionProductsType[] = [
@@ -21,11 +21,10 @@ const NavBar = () => {
   ];
 
   return (
-    <>
+    <div>
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
-            <CartWidgetIcono />
             NO GLUTEN
           </a>
         </div>
@@ -35,19 +34,16 @@ const NavBar = () => {
         >
           <ul className="navbar-nav">
             {navBarElem}
-            <NavBarLinks
-              dropdown
+            <NavBarLink
               text="PRODUCTOS"
               link="#"
+              dropdown
               optionProducts={optionProducts}
             />
-            <li>
-              <CartWidgetCarrito />
-            </li>
           </ul>
         </div>
       </nav>
-    </>
+    </div>
   );
 };
 
@@ -64,3 +60,4 @@ interface OptionProductsType {
 }
 
 export default NavBar;
+ */
