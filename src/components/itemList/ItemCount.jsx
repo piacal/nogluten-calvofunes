@@ -11,6 +11,9 @@ const ItemCount = ({ initial, stock, onAdd }) => {
     if (count > initial) setCount(count - 1);
   }
 
+  function clickToAdd() {
+    onAdd(count);
+  }
   return (
     <>
       <div className="container px-5 py-8 mx-auto">
@@ -38,10 +41,9 @@ const ItemCount = ({ initial, stock, onAdd }) => {
             </div>
             <div>
               <button
-                onClick={() => onAdd(count)}
+                onClick={() => clickToAdd()}
                 type="button"
                 className="btn btn-info"
-                disabled={count === "" || count === 0}
               >
                 Agregar al carrtio
               </button>
