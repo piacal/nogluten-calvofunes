@@ -20,18 +20,23 @@ const CartProvider = ({ children }) => {
   const isInCart = (id) => {
     //const serch = products.find((product) => product.id === id);
     //return serch ? true : false;
-    return products.some((products) => products.id === id);
+    return products.some((product) => product.id === id);
   };
 
   const addProduct = (product) => {
     if (isInCart(product.id)) {
-      const found = products.find((p) => p.id === product.id);
-      const index = products.indexOf(found);
-      const arrAux = [...products];
+      const updatedProducts = products.map((prod) =>
+        prod.id === product.id
+          ? { ...prod, quantity: prod.quantity + product.quantity }
+          : prod
+      );
+      /* const found = product.find((p) => p.id === product.id);
+      const index = product.indexOf(found);
+      const arrAux = [...product];
       arrAux[index].quantity += product.quantity;
-      setProducts(arrAux);
+      setProducts(arrAux); */
     } else {
-      setProducts([...product, product]);
+      setProducts((prevState) => [...prevState, product]);
     }
   };
 
