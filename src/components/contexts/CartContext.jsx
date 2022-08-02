@@ -23,6 +23,13 @@ const CartProvider = ({ children }) => {
     return products.some((product) => product.id === id);
   };
 
+  const calcularTotal = () => {
+    return products.reduce(
+      (acum, actual) => acum + actual.price * actual.quantity,
+      0
+    );
+  };
+
   const addProduct = (product) => {
     if (isInCart(product.id)) {
       const updatedProducts = products.map((prod) =>
@@ -51,7 +58,14 @@ const CartProvider = ({ children }) => {
   };
   return (
     <Provider
-      value={{ products, addProduct, deleteProduct, clear, quantityProducts }}
+      value={{
+        products,
+        addProduct,
+        deleteProduct,
+        clear,
+        quantityProducts,
+        calcularTotal,
+      }}
     >
       {children}
     </Provider>
