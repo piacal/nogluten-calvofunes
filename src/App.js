@@ -1,13 +1,13 @@
 import logo from "./logo.svg";
 import "./App.css";
 //import NavBar from "../src/components/NavBar/NavBar";
-import ItemListContainer from "./components/itemList/ItemListContainer";
-import ItemCount from "../src/components/itemList/ItemCount";
-import ItemDetailContainer from "./components/itemList/ItemDetailContainer";
+import ItemListContainer from "../src/components/Containers/ItemListContainer/ItemListContainer";
+import ItemCount from "../src/components/ItemCount/ItemCount";
+import ItemDetailContainer from "../src/components/Containers/ItemDetailContainer/ItemDetailContainer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBarNew from "./components/NavBar/NavBarNew";
 import CartProvider from "./components/contexts/CartContext";
-import Cart from "./components/Cart";
+import Cart from "./components/Cart/Cart";
 
 function App() {
   return (
