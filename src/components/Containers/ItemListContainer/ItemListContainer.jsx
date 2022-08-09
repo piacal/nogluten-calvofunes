@@ -18,12 +18,13 @@ function ItemListContainer(props) {
   const { categoryId } = useParams();
 
   useEffect(() => {
+    setLoading(true);
     const db = getFirestore();
     const itemsCollection = collection(db, "items");
-    const fillterCollection = categoryId
+    const filterCollection = categoryId
       ? query(itemsCollection, where("category", "==", categoryId))
       : itemsCollection;
-    getDocs(fillterCollection).then((snapshot) => {
+    getDocs(filterCollection).then((snapshot) => {
       const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setItems(data);
       setLoading(false);

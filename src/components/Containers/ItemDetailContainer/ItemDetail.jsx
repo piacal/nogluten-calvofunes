@@ -12,34 +12,27 @@ const ItemDetail = ({ product }) => {
   };
   return (
     <>
-      <div className="card mb-3">
-        <div className="row g-0">
-          <div className="col-md-3">
-            <img
-              src={product.imgProducts}
-              className="img-fluid rounded-start"
-              alt={product.title}
-            />
-          </div>
-          <div className="col-md-6">
-            <div className="card-body">
-              <h5 className="card-title">{product.title}</h5>
-              <p className="card-text">{product.description}</p>
-              <p className="card-text">$ {product.price}</p>
-              <p className="card-text">Stock: {product.stock}</p>
-              <p className="card-text">
-                {amount ? (
-                  <Link to="/cart/">
-                    <button className="btn btn-warning">
-                      Finalizar compra
-                    </button>
-                  </Link>
-                ) : (
-                  <ItemCount stock={product.stock} initial={0} onAdd={onAdd} />
-                )}
-              </p>
-            </div>
-          </div>
+      <div style={stylesDetail.container}>
+        <img
+          style={stylesDetail.logoProd}
+          src={product.imgProducts}
+          alt={product.title}
+        />
+
+        <div style={stylesDetail.infoTextContainer}>
+          <h5 style={stylesDetail.h5}>{product.title}</h5>
+          <p style={stylesDetail.infoText}>{product.description}</p>
+          <p style={stylesDetail.infoText}>Precio $ {product.price}</p>
+          <p style={stylesDetail.infoText}>Stock: {product.stock}</p>
+          <p style={stylesDetail.infoText}>
+            {amount ? (
+              <Link to="/cart/">
+                <button style={stylesDetail.buttonFin}>FINALIZAR COMPRA</button>
+              </Link>
+            ) : (
+              <ItemCount stock={product.stock} initial={0} onAdd={onAdd} />
+            )}
+          </p>
         </div>
       </div>
     </>
@@ -47,3 +40,49 @@ const ItemDetail = ({ product }) => {
 };
 
 export default ItemDetail;
+
+const stylesDetail = {
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "left",
+    alignItems: "center",
+    margin: "10px",
+    padding: "20px",
+    borderStyle: "groove",
+  },
+
+  logoProd: {
+    width: "30%",
+  },
+  infoTextContainer: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "right",
+    justifyContent: "center",
+  },
+  infoText: {
+    marging: "10px",
+    marginLeft: "50px",
+    display: "flex",
+    justifyContent: "space-around",
+    flexDirection: "column",
+    alignItems: "right",
+    fontSize: "15px",
+  },
+  h5: {
+    display: "flex",
+    alignItems: "right",
+    marginLeft: "50px",
+    fontSize: "20px",
+  },
+  buttonFin: {
+    width: "150px",
+    height: "50px",
+    backgroundColor: "rgb(54, 54, 54)",
+    color: "white",
+    fontSize: "15px",
+
+    margin: "15px",
+  },
+};

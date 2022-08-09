@@ -3,8 +3,19 @@ import { cartContext } from "../contexts/CartContext";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  //return <div>Soy el carrito</div>;
-  const { products, deleteProduct, calcularTotal } = useContext(cartContext);
+  const { products, deleteProduct, totalPrice } = useContext(cartContext);
+  const { sendOrder } = useContext(cartContext);
+
+  const handleSumbit = (e) => {
+    e.preventDefault();
+    const inputs = document.getElementsByTagName("input");
+    const data = Array.from(inputs).map((input) => input.value);
+    sendOrder(totalPrice(), {
+      name: data[0],
+      mail: data[1],
+      phone: [2],
+    });
+  };
 
   if (products.length === 0) {
     return (
@@ -18,93 +29,86 @@ const Cart = () => {
   }
   return (
     <>
-      <div className="container">
-        <div className="wrapper wrapper-content animated fadeInRight">
-          <div className="row">
-            <div className="col-md-9">
-              <div className="ibox">
-                <div className="ibox-title">
-                  <h5>Productos en el carrito</h5>
-                </div>
-                {products.map((product) => (
-                  <div className="ibox-content" key={product.id}>
-                    <div className="table-responsive">
-                      <table className="table shoping-cart-table">
-                        <tbody>
-                          <tr>
-                            <td width="90">
-                              <div className="cart-product-imitation"></div>
-                            </td>
-                            <td className="desc">
-                              <h3>
-                                <Link to="/" className="text-navy">
-                                  {product.title}
-                                </Link>
-                              </h3>
-                              <p className="small">{product.description}</p>
-
-                              <div className="m-t-sm">
-                                <button
-                                  className="text-muted"
-                                  onClick={() => deleteProduct(product.id)}
-                                >
-                                  <i className="fa fa-trash"></i> Borrar del
-                                  Carrito
-                                </button>
-                              </div>
-                            </td>
-
-                            <td>
-                              <h5>
-                                Cantidad: {product.quantity} Precio:
-                                {product.price * product.quantity}
-                              </h5>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                ))}
-                <div className="ibox-content">
-                  <button className="btn btn-primary pull-right">
-                    <i className="fa fa fa-shopping-cart"></i> Finalizar compra
-                  </button>
-                  <Link to="/">
-                    <p className="btn btn-white">
-                      <i className="fa fa-arrow-left"></i> Continuar comprando
-                    </p>
-                  </Link>
-                </div>
-              </div>
+      <h2 style={stylesCart.h5}>PRODUCTOS DEL CARRITO</h2>
+      <div style={stylesCart.container}>
+        {products.map((product) => (
+          <div style={stylesCart.titleProd} key={product.id}>
+            <Link style={stylesCart.h3} to="/" className="text-navy">
+              {product.title}
+            </Link>
+            <div className="m-t-sm">
+              <button
+                className="text-muted"
+                onClick={() => deleteProduct(product.id)}
+              >
+                Borrar del Carrito
+              </button>
             </div>
-            <div className="col-md-3">
-              <div className="ibox">
-                <div className="ibox-content">
-                  <h2 className="font-bold">
-                    {" "}
-                    TOTAL COMPRAS = $ {calcularTotal()}
-                  </h2>
 
-                  <hr />
-                  <div className="m-t-sm">
-                    <div className="btn-group">
-                      <Link to="/cart" className="btn btn-primary btn-sm">
-                        <i className="fa fa-shopping-cart"></i> Pagar
-                      </Link>
-                      <Link to="/" className="btn btn-white btn-sm">
-                        Cancelar
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <h5 style={stylesCart.h5}>
+              Cantidad: {product.quantity} Precio:
+              {product.price * product.quantity}
+            </h5>
           </div>
+        ))}
+      </div>
+      <div style={stylesCart.totalPrice}>
+        <h2 className="font-bold"> TOTAL COMPRAS = $ {totalPrice()}</h2>
+        <hr />
+        <div className="ibox-content">
+          <Link to="/">
+            <p className="btn btn-white">
+              <i className="fa fa-arrow-left"></i> Continuar comprando
+            </p>
+          </Link>
         </div>
+        <form onSubmit={handleSumbit}>
+          <input type="text" />
+          <input type="email" />
+          <input type="tel" />
+          <button
+            type="submit"
+            className="btn btn-primary pull-right fa fa fa-shopping-cart"
+          >
+            Finalizar compra
+          </button>
+        </form>
       </div>
     </>
   );
 };
 
 export default Cart;
+
+const stylesCart = {
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "left",
+    alignItems: "left",
+    margin: "10px",
+  },
+  h5: {
+    display: "flex",
+    flexDirection: "center ",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: "18px",
+    margin: "15px",
+  },
+  titleProd: {
+    fontSize: "20px",
+    fontWeight: "bold",
+    textDecoration: "none",
+  },
+  h3: {
+    textDecoration: "none",
+    color: "black",
+    textTransform: "uppercase",
+  },
+  totalPrice: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+};
