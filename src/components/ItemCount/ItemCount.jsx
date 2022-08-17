@@ -68,7 +68,6 @@ const styles = {
     backgroundColor: "rgb(54, 54, 54)",
     color: "white",
     fontSize: "15px",
-
     margin: "15px",
   },
   h1: {

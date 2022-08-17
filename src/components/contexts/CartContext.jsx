@@ -9,6 +9,7 @@ import {
   writeBatch,
   documentId,
 } from "firebase/firestore";
+import { Link } from "react-router-dom";
 
 export const cartContext = createContext();
 const { Provider } = cartContext;
@@ -26,10 +27,7 @@ const CartProvider = ({ children }) => {
       buyer: buyerData,
       date: new Date(),
     };
-    /* addDoc(orderCollection, order).then((res) =>
-      alert(`Su numero de orden es: ${res.id}`)
-    );
- */
+
     const batch = writeBatch(db);
     const idList = products.map((product) => product.id);
     const withoutStock = [];

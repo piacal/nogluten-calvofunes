@@ -1,21 +1,10 @@
 import React, { useContext } from "react";
 import { cartContext } from "../contexts/CartContext";
 import { Link } from "react-router-dom";
+import { Formulario } from "../formulario";
 
 const Cart = () => {
   const { products, deleteProduct, totalPrice } = useContext(cartContext);
-  const { sendOrder } = useContext(cartContext);
-
-  const handleSumbit = (e) => {
-    e.preventDefault();
-    const inputs = document.getElementsByTagName("input");
-    const data = Array.from(inputs).map((input) => input.value);
-    sendOrder(totalPrice(), {
-      name: data[0],
-      mail: data[1],
-      phone: [2],
-    });
-  };
 
   if (products.length === 0) {
     return (
@@ -34,21 +23,20 @@ const Cart = () => {
         {products.map((product) => (
           <div style={stylesCart.titleProd} key={product.id}>
             <Link style={stylesCart.h3} to="/" className="text-navy">
-              {product.title}
+              {product.title}{" "}
+              <h5 style={stylesCart.h5}>
+                Cantidad: {product.quantity} Precio: $
+                {product.price * product.quantity}
+              </h5>
             </Link>
             <div className="m-t-sm">
               <button
-                className="text-muted"
+                style={stylesCart.buttonDel}
                 onClick={() => deleteProduct(product.id)}
               >
                 Borrar del Carrito
               </button>
             </div>
-
-            <h5 style={stylesCart.h5}>
-              Cantidad: {product.quantity} Precio:
-              {product.price * product.quantity}
-            </h5>
           </div>
         ))}
       </div>
@@ -57,22 +45,12 @@ const Cart = () => {
         <hr />
         <div className="ibox-content">
           <Link to="/">
-            <p className="btn btn-white">
-              <i className="fa fa-arrow-left"></i> Continuar comprando
-            </p>
+            <button style={stylesCart.buttonCon}>Continuar comprando</button>
           </Link>
         </div>
-        <form onSubmit={handleSumbit}>
-          <input type="text" />
-          <input type="email" />
-          <input type="tel" />
-          <button
-            type="submit"
-            className="btn btn-primary pull-right fa fa fa-shopping-cart"
-          >
-            Finalizar compra
-          </button>
-        </form>
+        <Link style={stylesCart.h3} to="/formulario">
+          <button style={stylesCart.buttonCon}>Finalizar compra</button>
+        </Link>
       </div>
     </>
   );
@@ -86,7 +64,7 @@ const stylesCart = {
     flexDirection: "column",
     justifyContent: "left",
     alignItems: "left",
-    margin: "10px",
+    margin: "20px",
   },
   h5: {
     display: "flex",
@@ -110,5 +88,24 @@ const stylesCart = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+  },
+  buttonDel: {
+    width: "150px",
+    height: "30px",
+    backgroundColor: "rgb(227, 219, 219)",
+    fontSize: "15px",
+  },
+  buttonCon: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: "30px",
+    width: "150px",
+    height: "50px",
+    backgroundColor: "grey",
+    textDecoration: "none",
+    color: "white",
+    fontSize: "15px",
+    margin: "15px",
   },
 };

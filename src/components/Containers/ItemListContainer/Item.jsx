@@ -3,20 +3,21 @@ import { Link } from "react-router-dom";
 const Item = ({ item }) => {
   const { id, title, price, stock, imgProducts } = item;
   return (
-    <div style={styleItem.container}>
+    <div className="card" style={styleItem.container}>
       <img className="card-img" src={imgProducts} alt={title} />
+      <div className="card-body">
+        <h5 style={styleItem.h5}>{title}</h5>
+        <p style={styleItem.infoText}>Precio ${price}</p>
+        <p style={styleItem.infoText}>{`${stock} en Stock`}</p>
 
-      <h5 style={styleItem.h5}>{title}</h5>
-      <p style={styleItem.infoText}>Precio ${price}</p>
-      <p style={styleItem.infoText}>{`${stock} en Stock`}</p>
-
-      <Link
-        to={`/detail/${item.id}`}
-        style={styleItem.buttonDetail}
-        className="btn btn-gray "
-      >
-        Ver detalles del producto
-      </Link>
+        <Link
+          to={`/detail/${item.id}`}
+          style={styleItem.buttonDetail}
+          className="btn btn-gray "
+        >
+          Ver detalles del producto
+        </Link>
+      </div>
     </div>
   );
 };
@@ -25,13 +26,12 @@ export default Item;
 
 const styleItem = {
   container: {
-    display: "flex",
-    flexDirection: "column",
+    width: "15rem",
+    high: "15rem",
+    margin: "10px",
+    border: "none",
     justifyContent: "center",
     alignItems: "center",
-    margin: "20px",
-    high: "50px",
-    weight: "20px",
   },
 
   h5: {
@@ -45,7 +45,7 @@ const styleItem = {
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
-    alignItems: "left",
+    alignItems: "center",
     fontSize: "15px",
   },
   buttonDetail: {

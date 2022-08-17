@@ -1,10 +1,13 @@
-## No-gluten
+## No-gluten - DESCRIPCION
 
-Es un e-commerce esta pensado como un shop de productos para celiacos, donde sea de facil busqueda para los usuarios.
+Proyecto Final para el curso de ReactJS de CoderHouse. La aplicación permite conectarse con un backend realizdo con Firebase. Permite seleccionar ciertos productos, navegar a sus detalles, agregarlos al carrito, poder acceder a él, simular la compra de los productos. Al clickear sobre el botón "finalizar compra", pide llenar un formulario con datos básicos y luego de confirmar se genera un id de orden para el usuario y en firebase se guarda la orden con los productos que compró.
 
-## Libreria
+Tecnologías y librerías:
 
-Bootstrap
+Interfaz realizada con ReactJS - Create React App
+Estilos con Bootstrap, CSS.
+Ruteo con React Router Dom
+Backend con Firebase
 
 # Getting Started with Create React App
 
